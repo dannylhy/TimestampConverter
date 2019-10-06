@@ -19,9 +19,15 @@ def main(argv):
     sys.exit(2)
   for o, a in opts:
     if o == "-t":
-      int_timestamp_to_string(a)
+      if not isinstance(a, int):
+        print("Invalid timestamp. ", a)
+        sys.exit(2)
+      print("Input timestamp :", a)
+      print("Output string :", int_timestamp_to_string(a))
     elif o in ("-h", "--help"):
       usage()
       sys.exit(2)
+    else:
+      assert False, "unhandled option"
 
 main(sys.argv[1:])
